@@ -1,0 +1,55 @@
+#Bot code
+
+import discord #IMportamos la libreria discord
+from discord.ext import commands
+import random #Importamos la libreria random
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event #Nos indica si el bot de ha logeado (iniciado) correctamente
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command() #Este es el codigo que hace funcionar el comando "$hello" que cuando los ponemos en el chat nos dice: "Hola, mi nombre es: Smok3.#0879!"
+async def hello(ctx):
+    await ctx.send(f'Hola, mi nombre es: {bot.user}!')
+
+@bot.command() #Codigo que hace funcionar el comando "$heh", que cuando lo ponemos en el chat nos dice: "hehehehehehe"
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+@bot.command() #Codigo que hace funcionar el comando "$add", que funciona colocando un espacio despues del "add" y colocando 2 numeros que sumara
+async def add(ctx, left: int, right: int):
+    """Adds two numbers together."""
+    await ctx.send(left + right)
+
+@bot.command(description='For when you wanna settle the score some other way') #Codigo que hace funcionar el comando "choose" que tu puedes usar para que eliga entre 2, 3, 4, o todos los datos que tu quieras. No importa si son letras, o numeros, solo tienes que colocar un espacio entre cada dato que quieres que eliga
+async def choose(ctx, *choices: str):
+    """Chooses between multiple choices."""
+    await ctx.send(random.choice(choices))
+
+@bot.command() #Codigo del comando "$joined" que puedes utilizar mencionando a la persona que quieras saber cuando ingreso al servidor en el que estas poniendo el comando
+async def joined(ctx, member: discord.Member):
+    """Says when a member joined."""
+    await ctx.send(f'{member.name} Se metio al servidor el: {discord.utils.format_dt(member.joined_at)}')
+
+@bot.group() #Codigo del comando "$cool" que te dice si el usuario mencionado es cool
+async def cool(ctx):
+    """Says if a user is cool.
+
+    In reality this just checks if a subcommand is being invoked.
+    """
+    if ctx.invoked_subcommand is None:
+        await ctx.send(f'Si, {ctx.subcommand_passed} es cool')
+
+@cool.command(name='bot')
+async def _bot(ctx):
+    """Is the bot cool?"""
+    await ctx.send('Si, el bot es cool.')
+
+
+
+bot.run("TU TOKEN VA AQUI!") 
