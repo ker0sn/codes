@@ -76,14 +76,14 @@ async def meme(ctx):
     await ctx.send(file=picture)
  
 @bot.command('pato') #Codigo del comando "$pato" que envia a tu servidor de discord una foto totalmente aleatoria de un pato
-async def duck(ctx):
+async def pato(ctx):
     '''Una vez que llamamos al comando pato, 
     el programa llama a la función get_duck_image_url'''
     image_url = get_duck_image_url()
     await ctx.send(image_url)
 
 @bot.command('perro') #Codigo del comando "$perro" que envia a tu servidor de discord una foto totalmente aleatoria de un perro
-async def duck(ctx):
+async def perro(ctx):
     '''Una vez que llamamos al comando perro, 
     el programa llama a la función get_dog_image_url'''
     image_url = get_dog_image_url()
