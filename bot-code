@@ -5,11 +5,25 @@ import discord #IMportamos la libreria discord
 from discord.ext import commands
 import random #Importamos la libreria random
 import os
+import requests
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix='$', intents=intents)
+
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+def get_dog_image_url():    
+    url = 'https://random.dog/woof.json'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
 
 @bot.event #Nos indica si el bot de ha logeado (iniciado) correctamente
 async def on_ready():
@@ -61,5 +75,23 @@ async def meme(ctx):
     # A continuación, podemos enviar este archivo como parámetro.
     await ctx.send(file=picture)
  
+@bot.command('pato') #Codigo del comando "$pato" que envia a tu servidor de discord una foto totalmente aleatoria de un pato
+async def duck(ctx):
+    '''Una vez que llamamos al comando pato, 
+    el programa llama a la función get_duck_image_url'''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+@bot.command('perro') #Codigo del comando "$perro" que envia a tu servidor de discord una foto totalmente aleatoria de un perro
+async def duck(ctx):
+    '''Una vez que llamamos al comando perro, 
+    el programa llama a la función get_dog_image_url'''
+    image_url = get_dog_image_url()
+    await ctx.send(image_url)
+
+@bot.command() #Codigo del comando "$emoji" que envia a tu servidor de discord un emoji totalmente aleatorio
+async def emoji(ctx):
+    await ctx.send(random.choice(["😀","😎","🤑","🥵","🥶","🤬","🤡","👺","🤓","👻","👽","😺"])) 
+
 
 bot.run("TU TOKEN VA AQUI!)
