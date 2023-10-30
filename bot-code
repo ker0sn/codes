@@ -50,6 +50,13 @@ async def _bot(ctx):
     """Is the bot cool?"""
     await ctx.send('Si, el bot es cool.')
 
+@bot.command() #Comando "$meme" para enviar un meme al servidor de discord
+async def meme(ctx):
+    with open('tu direccion de los memes', 'rb') as f: #Tienes que colocar el nombre de la carpeta de los memes y la imagen del meme respectivo (SOLO SE PUEDE USAR UNO) recuerda siempre usar la final del nombre de tu imagen colocar ".jpg". Ejemplo: "memes/meme1.jpg" eso lo colocas en "tu direccion de los memes".
+        # ¡Vamos a almacenar el archivo de la biblioteca Discord convertido en esta variable!
+        picture = discord.File(f)
+    # A continuación, podemos enviar este archivo como parámetro.
+    await ctx.send(file=picture)
+ 
 
-
-bot.run("TU TOKEN VA AQUI!") 
+bot.run("TU TOKEN VA AQUI!")
