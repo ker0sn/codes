@@ -69,7 +69,7 @@ async def _bot(ctx):
 @bot.command() #Comando "$meme" para enviar un meme al servidor de discord
 async def meme(ctx):
     img_name = random.choice(os.listdir("memes"))
-    with open(f'memes/{img_name}', 'rb') as f:
+    with open(f'memes/{img_name}', 'rb') as f: #En donde dice "memes/{img_name}" le colocas tu direccion de tu carpeta de memes, por ejemplo: Si tu carpeta de memes se llama "mis memes" en donde dice memes en "memes/{img_name}" colocas "mis memes", osea quedaria asi: "mis memes/{img_name}". En "img_name = random.choice(os.listdir("memes"))" en donde dice memes pones el nombre de la carpeta de tus memes
         # ¡Vamos a almacenar el archivo de la biblioteca Discord convertido en esta variable!
         picture = discord.File(f)
     # A continuación, podemos enviar este archivo como parámetro.
