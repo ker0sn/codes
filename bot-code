@@ -18,7 +18,7 @@ def get_duck_image_url(): #Funcion para poder buscar una foto aleatoria de un pa
     data = res.json()
     return data['url']
 
-def get_dog_image_url():  #Funcion para poder buscar una foto aleatoria de un perro  
+def get_dog_image_url(): #Funcion para poder buscar una foto aleatoria de un perro  
     url = 'https://random.dog/woof.json'
     res = requests.get(url)
     data = res.json()
@@ -91,7 +91,16 @@ async def perro(ctx):
 
 @bot.command() #Codigo del comando "$emoji" que envia a tu servidor de discord un emoji totalmente aleatorio
 async def emoji(ctx):
-    await ctx.send(random.choice(["😀","😎","🤑","🥵","🥶","🤬","🤡","👺","🤓","👻","👽","😺"])) 
+    await ctx.send(random.choice(["😀","😎","🤑","🥵","🥶","🤬","🤡","👺","🤓","👻","👽","😺"]))
+
+@bot.command() #Codigo del comando "$amb" que envia a tu servidor de discord un consejo sobre como evitar la contaminacion en el planeta tierra
+async def amb(ctx):
+    await ctx.send(random.choice(["Un consejo que te puedo dar para poder evitar la contaminacion del planeta seria: No botar chicles en la calle", "Recicla toda la basura que puedas o reutilizarla para fabricar algun objeto o algo por el estilo", "Usa productos que puedan reutilizarse", "Cuando llueva y quieras regar tus plantas, pon una cubeta de agua para recolectar el agua de la lluvia", "Siempre apaga cualquier dispositivo electronico cuando no los estes usando, y tambien apagar las luces que no se esten usando", "Consume productos ecológicos y locales", "Evita dejar los aparatos enchufados", "Cerrar los grifos correctamente para que no corra el agua y evitar el mal gasto", "Siempre cuando puedas evita usar automovil que usen gasolina y usa bicicleta para evitar contaminar", "Tener siempre en casa distintos tachos de basura para botellas, plasticos, cajas, etc etc etc"]))
+
+@bot.command() #Codigo del comando "$videos" que envia a tu servidor de discord un video sobre el medio ambiente, la contaminacion, y el cambio climatico en el planeta tierra
+async def videos(ctx):
+    await ctx.send(random.choice(["Esto es un video para que te des cuenta lo que puede provocar la contaminacion: https://youtu.be/1yz0-bEqKLY?si=jU2XcJcvy4JgLZpk", "Esto es un video para que te des cuenta lo que puede provocar la contaminacion: https://youtu.be/bR2X6sqsAiY?si=uDRqkU903lPb5HMQ", "Esto es un video para que te des cuenta lo que puede provocar la contaminacion: https://youtu.be/5w8cxYdLcCM?si=Nv9xAIoUJJEUmueM", "Esto es un video para que te des cuenta lo que puede provocar la contaminacion: https://youtu.be/e5y7FMCZwKQ?si=2za7P8oo5nlvY1-t"]))
 
 
-bot.run("TU TOKEN VA AQUI!)
+
+bot.run("TU TOKEN VA AQUI")
